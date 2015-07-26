@@ -34,14 +34,11 @@ public class RevTrollbot extends OpMode{
 
     @Override
     public void loop() {
-        if (Math.abs(gamepad1.left_stick_y) > .1) {
-            motorFL.setPower(Math.abs(gamepad1.left_stick_y) * 100);
-            motorBL.setPower(Math.abs(gamepad1.left_stick_y) * 100);
-        }
-
-        else if(Math.abs(gamepad1.right_stick_y) > .1) {
-            motorFR.setPower(Math.abs(gamepad1.right_stick_y) * 100);
-            motorBR.setPower(Math.abs(gamepad1.right_stick_y) * 100);
+        if (Math.abs(gamepad1.left_stick_y) > .1 || Math.abs(gamepad1.right_stick_y) > .1) {
+            motorFL.setPower(gamepad1.left_stick_y * 100);
+            motorBL.setPower(gamepad1.left_stick_y * 100);
+            motorFR.setPower(gamepad1.right_stick_y * 100);
+            motorBR.setPower(gamepad1.right_stick_y * 100);
         }
 
         else {
