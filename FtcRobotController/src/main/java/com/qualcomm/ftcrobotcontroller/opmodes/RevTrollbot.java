@@ -25,17 +25,15 @@ public class RevTrollbot extends OpMode{
         motorBR = hardwareMap.dcMotor.get("motor_2");
         motorFL = hardwareMap.dcMotor.get("motor_3");
         motorFR = hardwareMap.dcMotor.get("motor_4");
-
-
     }
 
     @Override
     public void loop() {
         if (Math.abs(gamepad1.left_stick_y) > .1 || Math.abs(gamepad1.right_stick_y) > .1) {
-            motorFL.setPower(gamepad1.left_stick_y * -100);
-            motorBL.setPower(gamepad1.left_stick_y * -100);
-            motorFR.setPower(gamepad1.right_stick_y * -100);
-            motorBR.setPower(gamepad1.right_stick_y * -100);
+            motorFL.setPower(gamepad1.left_stick_y);
+            motorBL.setPower(gamepad1.left_stick_y);
+            motorFR.setPower(gamepad1.right_stick_y);
+            motorBR.setPower(gamepad1.right_stick_y);
         }
 
         else {
