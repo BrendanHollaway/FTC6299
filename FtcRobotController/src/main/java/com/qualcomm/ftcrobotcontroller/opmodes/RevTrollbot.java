@@ -16,10 +16,7 @@ public class RevTrollbot extends OpMode{
     DcMotor motorFR;
 
 
-
     public RevTrollbot(){
-
-
     }
 
     @Override
@@ -52,6 +49,5 @@ public class RevTrollbot extends OpMode{
 
     @Override
     public void stop() {
-
     }
 }
