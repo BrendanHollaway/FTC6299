@@ -1,23 +1,26 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import com.qualcomm.robotcore.eventloop.EventLoopManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.eventloop.EventLoopManager;
+import com.qualcomm.robotcore.hardware.AccelerationSensor.Acceleration;
 
 
 
 /**
  * QuadX 6299
  */
-public class RevTrollbot extends OpMode{
+public class RevTrollbotSense extends OpMode{
 
     DcMotor motorBL;
     DcMotor motorBR;
     DcMotor motorFL;
     DcMotor motorFR;
+    double x = 0, y = 0, z = 0;
 
 
-    public RevTrollbot(){
+
+    public RevTrollbotSense(){
     }
 
     @Override
@@ -26,6 +29,8 @@ public class RevTrollbot extends OpMode{
         motorBR = hardwareMap.dcMotor.get("motor_2");
         motorFL = hardwareMap.dcMotor.get("motor_3");
         motorFR = hardwareMap.dcMotor.get("motor_4");
+
+        Acceleration test = new Acceleration(x, y, z);
     }
 
     @Override
@@ -46,6 +51,7 @@ public class RevTrollbot extends OpMode{
         }
 
         telemetry.addData("Voltage", EventLoopManager.ROBOT_BATTERY_LEVEL_KEY);
+        telemetry.addData("distance", String.format("%4d", x) + " " + String.format("%4d", y) + " " + String.format("%4d", z));
 
 
     }
