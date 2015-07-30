@@ -19,7 +19,6 @@ public class RevTrollbotSense extends OpMode{
     double x = 0, y = 0, z = 0;
 
 
-
     public RevTrollbotSense(){
     }
 
