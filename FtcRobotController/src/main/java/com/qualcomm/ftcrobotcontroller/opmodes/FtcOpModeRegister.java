@@ -65,6 +65,7 @@ public class FtcOpModeRegister implements OpModeRegister {
     manager.register("BatteryCheck", BatteryCheck.class);
     manager.register("TwoMotor", TwoMotorDrive.class);
     manager.register("Autonomous", AutonomousMain.class);
+    manager.register("MotorTest", MotorTest.class);
     /*
     manager.register("IrSeekerOp", IrSeekerOp.class);
     manager.register("CompassCalibration", CompassCalibration.class);
