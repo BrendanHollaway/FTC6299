@@ -60,8 +60,8 @@ public class RevTrollBot extends OpMode {
         motorFL = hardwareMap.dcMotor.get("motor_3");
         motorFR = hardwareMap.dcMotor.get("motor_4");
 
-        liftL = hardwareMap.dcMotor.get("motor_5");
-        liftR = hardwareMap.dcMotor.get("motor_6");
+        //liftL = hardwareMap.dcMotor.get("motor_5");
+        //liftR = hardwareMap.dcMotor.get("motor_6");
     }
 
 
