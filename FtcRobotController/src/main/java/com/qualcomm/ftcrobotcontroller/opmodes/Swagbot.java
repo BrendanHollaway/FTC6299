@@ -32,19 +32,27 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 /**
  * TeleOp Mode
  * <p>
  *Enables control of the robot via the gamepad
  */
-public class EmptyOP extends OpMode {
+public class Swagbot extends OpMode {
 
-
+    DcMotor BLmotor;
+    DcMotor BRmotor;
+    DcMotor FRmotor;
+    DcMotor FLmotor;
 
 
     @Override
     public void init() {
+        BLmotor = hardwareMap.dcMotor.get("motor_1");
+        FLmotor = hardwareMap.dcMotor.get("motor_2");
+        BRmotor = hardwareMap.dcMotor.get("motor_3");
+        FRmotor = hardwareMap.dcMotor.get("motor_4");
 
 
     }
@@ -52,7 +60,19 @@ public class EmptyOP extends OpMode {
 
     @Override
     public void loop() {
+        if (Math.abs(gamepad1.left_stick_y) > .1 || Math.abs(gamepad1.right_stick_y) > .1) {
+            BRmotor.setPower(gamepad1.right_stick_y);
+            FRmotor.setPower(gamepad1.right_stick_y);
+            BLmotor.setPower(gamepad1.right_stick_y);
+            FLmotor.setPower(gamepad1.left_stick_y);
 
+        }
+        else {
+            BLmotor.setPower(0);
+            FLmotor.setPower(0);
+            BRmotor.setPower(0);
+            FRmotor.setPower(0);
+        }
     }
 
     @Override
