@@ -33,48 +33,43 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * TeleOp Mode
  * <p>
  *Enables control of the robot via the gamepad
  */
-public class Swagbot extends OpMode {
-
-    DcMotor BLmotor;
-    DcMotor BRmotor;
-    DcMotor FRmotor;
-    DcMotor FLmotor;
+public class TwoMotorLift extends OpMode {
+    DcMotor motorL;
+    DcMotor motorR;
+    DcMotor liftL;
+    DcMotor liftR;
 
 
     @Override
     public void init() {
-        BLmotor = hardwareMap.dcMotor.get("motor_1");
-        FLmotor = hardwareMap.dcMotor.get("motor_2");
-        BRmotor = hardwareMap.dcMotor.get("motor_3");
-        FRmotor = hardwareMap.dcMotor.get("motor_4");
-
-
+        motorL = hardwareMap.dcMotor.get("motor_1");
+        motorR = hardwareMap.dcMotor.get("motor_2");
+        liftL = hardwareMap.dcMotor.get("motor_3");
+        liftR = hardwareMap.dcMotor.get("motor_4");
     }
 
 
     @Override
     public void loop() {
-        if (Math.abs(gamepad1.left_stick_y) > .1 || Math.abs(gamepad1.right_stick_y) > .1) {
-            BRmotor.setPower(gamepad1.right_stick_y);
-            FRmotor.setPower(gamepad1.right_stick_y);
-            BLmotor.setPower(gamepad1.right_stick_y);
-            FLmotor.setPower(gamepad1.left_stick_y);
+        if (Math.abs(gamepad1.left_stick_y) < .7 && Math.abs(gamepad1.right_stick_y) < .7 && Math.abs(gamepad2.left_stick_y) < .7) {
+            motorL.setPower(0);
+            motorR.setPower(0);
+            liftL.setPower(0);
+            liftR.setPower(0);
+        }
+        motorL.setPower(gamepad1.left_stick_y);
+        motorR.setPower(-gamepad1.right_stick_y);
+        liftL.setPower(-gamepad2.left_stick_y);
+        liftR.setPower(gamepad2.left_stick_y);
 
-        }
-        else {
-            BLmotor.setPower(0);
-            FLmotor.setPower(0);
-            BRmotor.setPower(0);
-            FRmotor.setPower(0);
-        }
     }
-
     @Override
     public void stop() {
 
