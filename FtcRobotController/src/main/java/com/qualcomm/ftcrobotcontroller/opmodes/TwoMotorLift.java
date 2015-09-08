@@ -76,21 +76,21 @@ public class TwoMotorLift extends OpMode {
             liftL.setPower(0);
             liftR.setPower(0);
         }
-        motorBL.setPower(gamepad1.left_stick_y);
-        motorFL.setPower(gamepad1.left_stick_y);
-        motorBR.setPower(-gamepad1.right_stick_y);
-        motorFR.setPower(-gamepad1.right_stick_y);
+        motorBL.setPower(-gamepad1.left_stick_y);
+        motorFL.setPower(-gamepad1.left_stick_y);
+        motorBR.setPower(gamepad1.right_stick_y);
+        motorFR.setPower(gamepad1.right_stick_y);
         liftL.setPower(-gamepad2.left_stick_y);
         liftR.setPower(gamepad2.left_stick_y);
 
         if (gamepad2.a) {
-            servoL.setPosition(0);
+            servoL.setPosition(0.0);
             servoR.setPosition(1.0);
         }
 
         if (gamepad2.x) {
-            servoL.setPosition(1.0);
-            servoR.setPosition(0);
+            servoL.setPosition(0.2);
+            servoR.setPosition(0.8);
         }
     }
     @Override
