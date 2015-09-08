@@ -41,34 +41,57 @@ import com.qualcomm.robotcore.hardware.Servo;
  *Enables control of the robot via the gamepad
  */
 public class TwoMotorLift extends OpMode {
-    DcMotor motorL;
-    DcMotor motorR;
+    DcMotor motorFL;
+    DcMotor motorFR;
+    DcMotor motorBL;
+    DcMotor motorBR;
     DcMotor liftL;
     DcMotor liftR;
+
+    Servo servoL;
+    Servo servoR;
 
 
     @Override
     public void init() {
-        motorL = hardwareMap.dcMotor.get("motor_1");
-        motorR = hardwareMap.dcMotor.get("motor_2");
-        liftL = hardwareMap.dcMotor.get("motor_3");
-        liftR = hardwareMap.dcMotor.get("motor_4");
+        motorBL = hardwareMap.dcMotor.get("motorBL");
+        motorBR = hardwareMap.dcMotor.get("motorBR");
+        motorFL = hardwareMap.dcMotor.get("motorFL");
+        motorFR = hardwareMap.dcMotor.get("motorFR");
+        liftL = hardwareMap.dcMotor.get("liftL");
+        liftR = hardwareMap.dcMotor.get("liftR");
+
+        servoL = hardwareMap.servo.get("servoL");
+        servoR = hardwareMap.servo.get("servoR");
     }
 
 
     @Override
     public void loop() {
         if (Math.abs(gamepad1.left_stick_y) < .7 && Math.abs(gamepad1.right_stick_y) < .7 && Math.abs(gamepad2.left_stick_y) < .7) {
-            motorL.setPower(0);
-            motorR.setPower(0);
+            motorBL.setPower(0);
+            motorBR.setPower(0);
+            motorFL.setPower(0);
+            motorFR.setPower(0);
             liftL.setPower(0);
             liftR.setPower(0);
         }
-        motorL.setPower(gamepad1.left_stick_y);
-        motorR.setPower(-gamepad1.right_stick_y);
+        motorBL.setPower(gamepad1.left_stick_y);
+        motorFL.setPower(gamepad1.left_stick_y);
+        motorBR.setPower(-gamepad1.right_stick_y);
+        motorFR.setPower(-gamepad1.right_stick_y);
         liftL.setPower(-gamepad2.left_stick_y);
         liftR.setPower(gamepad2.left_stick_y);
 
+        if (gamepad2.a) {
+            servoL.setPosition(0);
+            servoR.setPosition(1.0);
+        }
+
+        if (gamepad2.x) {
+            servoL.setPosition(1.0);
+            servoR.setPosition(0);
+        }
     }
     @Override
     public void stop() {
