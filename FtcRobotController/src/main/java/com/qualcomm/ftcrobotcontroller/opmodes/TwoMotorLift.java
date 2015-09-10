@@ -89,7 +89,7 @@ public class TwoMotorLift extends OpMode {
         }
 
         if (gamepad2.x) {
-            servoL.setPosition(0.2);
+            servoL.setPosition(0.3);
             servoR.setPosition(0.8);
         }
     }
