@@ -51,6 +51,7 @@ public class TwoMotorLift extends OpMode {
     Servo servoL;
     Servo servoR;
 
+    double modify = 1.0;
 
     @Override
     public void init() {
@@ -68,6 +69,9 @@ public class TwoMotorLift extends OpMode {
 
     @Override
     public void loop() {
+
+
+
         if (Math.abs(gamepad1.left_stick_y) < .7 && Math.abs(gamepad1.right_stick_y) < .7 && Math.abs(gamepad2.left_stick_y) < .7) {
             motorBL.setPower(0);
             motorBR.setPower(0);
@@ -76,12 +80,20 @@ public class TwoMotorLift extends OpMode {
             liftL.setPower(0);
             liftR.setPower(0);
         }
-        motorBL.setPower(-gamepad1.left_stick_y);
-        motorFL.setPower(-gamepad1.left_stick_y);
-        motorBR.setPower(gamepad1.right_stick_y);
-        motorFR.setPower(gamepad1.right_stick_y);
+        motorBL.setPower(-gamepad1.left_stick_y * modify);
+        motorFL.setPower(-gamepad1.left_stick_y * modify);
+        motorBR.setPower(gamepad1.right_stick_y * modify);
+        motorFR.setPower(gamepad1.right_stick_y * modify);
         liftL.setPower(-gamepad2.left_stick_y);
         liftR.setPower(gamepad2.left_stick_y);
+
+        if (gamepad1.a) {
+            modify = 0.35;
+        }
+
+        if (gamepad1.x) {
+            modify = 1.0;
+        }
 
         if (gamepad2.a) {
             servoL.setPosition(0.0);
