@@ -34,6 +34,8 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.ftcrobotcontroller.autonomous_libs.movement;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -59,7 +61,6 @@ public class RevTrollBot extends OpMode {
         motorBR = hardwareMap.dcMotor.get("motor_2");
         motorFL = hardwareMap.dcMotor.get("motor_3");
         motorFR = hardwareMap.dcMotor.get("motor_4");
-
         //liftL = hardwareMap.dcMotor.get("motor_5");
         //liftR = hardwareMap.dcMotor.get("motor_6");
     }
