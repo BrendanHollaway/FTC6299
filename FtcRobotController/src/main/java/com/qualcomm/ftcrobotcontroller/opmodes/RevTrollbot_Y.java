@@ -46,8 +46,8 @@ public class RevTrollbot_Y extends OpMode {
     DcMotor motorR;
     DcMotor liftL;
     DcMotor liftR;
-    //Servo servoL;
-    //Servo servoR;
+    Servo servoL;
+    Servo servoR;
 
 
     @Override
@@ -56,8 +56,8 @@ public class RevTrollbot_Y extends OpMode {
         motorR = hardwareMap.dcMotor.get("motor_2");
         liftL = hardwareMap.dcMotor.get("motor_3");
         liftR = hardwareMap.dcMotor.get("motor_4");
-        //servoL = hardwareMap.servo.get("servo_1");
-       // servoR = hardwareMap.servo.get("servo_2");
+        servoL = hardwareMap.servo.get("servo_1");
+        servoR = hardwareMap.servo.get("servo_2");
 
     }
 
@@ -75,15 +75,15 @@ public class RevTrollbot_Y extends OpMode {
         liftL.setPower(-gamepad2.left_stick_y);
         liftR.setPower(gamepad2.left_stick_y);
 
-        //if (gamepad2.a) {
-        //    servoL.setPosition(1.0);
-        //    servoR.setPosition(0);
-        //}
+        if (gamepad2.a) {
+            servoL.setPosition(1.0);
+            servoR.setPosition(0);
+        }
 
-        //if (gamepad2.x) {
-        //    servoL.setPosition(0);
-        //    servoR.setPosition(1.0);
-        //}
+        if (gamepad2.x) {
+            servoL.setPosition(0);
+            servoR.setPosition(1.0);
+        }
     }
 
     @Override
