@@ -49,6 +49,7 @@ public class RevTrollbot_Y extends OpMode {
     Servo servoL;
     Servo servoR;
 
+
     @Override
     public void init() {
         motorL = hardwareMap.dcMotor.get("motor_1");
@@ -57,6 +58,7 @@ public class RevTrollbot_Y extends OpMode {
         liftR = hardwareMap.dcMotor.get("motor_4");
         servoL = hardwareMap.servo.get("servo_1");
         servoR = hardwareMap.servo.get("servo_2");
+
     }
 
 

@@ -45,41 +45,50 @@ import java.util.Date;
  */
 public class RevTrollBot extends OpMode {
 
-    DcMotor motorBL;
-    DcMotor motorBR;
+    DcMotor motorR;
     DcMotor motorFL;
-    DcMotor motorFR;
+    DcMotor motorBL;
+    DcMotor motorM;
 
-    DcMotor liftL;
-    DcMotor liftR;
 
     @Override
     public void init() {
-        motorBL = hardwareMap.dcMotor.get("motor_1");
-        motorBR = hardwareMap.dcMotor.get("motor_2");
-        motorFL = hardwareMap.dcMotor.get("motor_3");
-        motorFR = hardwareMap.dcMotor.get("motor_4");
+        motorR = hardwareMap.dcMotor.get("motor_1");
+        motorFL = hardwareMap.dcMotor.get("motor_2");
+        motorBL = hardwareMap.dcMotor.get("motor_3");
+        motorM = hardwareMap.dcMotor.get("motor_4");
 
-        //liftL = hardwareMap.dcMotor.get("motor_5");
-        //liftR = hardwareMap.dcMotor.get("motor_6");
     }
 
 
     @Override
     public void loop() {
-        if (Math.abs(gamepad1.left_stick_y) > .1 || Math.abs(gamepad1.right_stick_y) > .1) {
-            motorBR.setPower(-gamepad1.right_stick_y);
-            motorFR.setPower(-gamepad1.right_stick_y);
-            motorBL.setPower(gamepad1.left_stick_y);
-            motorFL.setPower(gamepad1.left_stick_y);
+        if (gamepad1.left_stick_y < .5 && gamepad1.right_stick_y < .5) {
+            motorFL.setPower(0);
+            motorBL.setPower(0);
+            motorR.setPower(0);
+
         }
 
-        else {
-            motorBR.setPower(0);
-            motorBR.setPower(0);
-            motorFR.setPower(0);
-            motorFL.setPower(0);
+        motorFL.setPower(-gamepad1.left_stick_y);
+        motorBL.setPower(-gamepad1.left_stick_y);
+        motorR.setPower(gamepad1.right_stick_y);
+
+        motorM.setPower(0);
+
+        if (gamepad1.left_trigger > .5){
+            motorM.setPower(1.0);
+            motorFL.setPower(-gamepad1.left_stick_y);
+            motorBL.setPower(-gamepad1.left_stick_y);
+            motorR.setPower(gamepad1.right_stick_y);
         }
+        if (gamepad1.right_trigger > .5){
+            motorM.setPower(-1);
+            motorFL.setPower(-gamepad1.left_stick_y);
+            motorBL.setPower(-gamepad1.left_stick_y);
+            motorR.setPower(gamepad1.right_stick_y);
+        }
+
     }
 
     @Override
